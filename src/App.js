@@ -1,4 +1,4 @@
-import react from 'react';
+import react, { useEffect, useState} from 'react';
 
 import styled from 'styled-components';
 
@@ -13,6 +13,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 import Button from '@mui/material/Button';
+
+import getData from './utils/api';
 
 const StyledBox = styled(Box)`
 margin: auto;
@@ -48,17 +50,22 @@ const StyledTable = styled(Table)`
 min-width: 650px;
 `;
 
-function App() {
+function createData(
+  name,
+  calories,
+  fat,
+  carbs,
+  protein,
+) {
+  return { name, calories, fat, carbs, protein };
+}
 
-  function createData(
-    name,
-    calories,
-    fat,
-    carbs,
-    protein,
-  ) {
-    return { name, calories, fat, carbs, protein };
-  }
+function App() {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    getData().then((data) => setData(data));
+  }, []);
 
   const rows = [
     createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
