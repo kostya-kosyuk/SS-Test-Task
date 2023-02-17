@@ -1,4 +1,4 @@
-import react, { useEffect, useState} from 'react';
+import { useEffect, useState} from 'react';
 
 import styled from 'styled-components';
 
@@ -12,9 +12,12 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
+import CircularProgress from '@mui/material/CircularProgress';
+
 import Button from '@mui/material/Button';
 
 import getData from './utils/api';
+import { getAvalaibleColumns, getDataByNames, getRows } from './utils/dataFunctions';
 
 const StyledBox = styled(Box)`
 margin: auto;
@@ -25,6 +28,7 @@ max-width: 90vw;
 display: flex;
 flex-direction: column;
 justify-content: center;
+align-items: center;
 `;
 
 const StyledButtonBox = styled(Box)`
@@ -50,78 +54,49 @@ const StyledTable = styled(Table)`
 min-width: 650px;
 `;
 
-function createData(
-  name,
-  calories,
-  fat,
-  carbs,
-  protein,
-) {
-  return { name, calories, fat, carbs, protein };
-}
-
 function App() {
   const [data, setData] = useState(null);
+  const [rows, setRows] = useState(null);
+  const [selectedColumns, setSelectedColumns] = useState(['date', 'limit', 'number', 'users']);
 
   useEffect(() => {
-    getData().then((data) => setData(data));
+    getData().then((data) => {
+      setData(data);
+      setRows(getRows(getDataByNames(selectedColumns, data)));
+    });
   }, []);
-
-  const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-  ];
 
   return (
     <div className="App">
       <StyledBox>
-        <StyledButtonBox>
-          <StyledButton variant="contained" size='small'>Select Columns</StyledButton>
-        </StyledButtonBox>
-        <StyledTableContainer component={Paper}>
-          <StyledTable aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>Dessert (100g serving)</TableCell>
-                <TableCell align="right">Calories</TableCell>
-                <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                <TableCell align="right">Protein&nbsp;(g)</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map((row) => (
-                <TableRow
-                  key={row.name}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
-                    {row.name}
-                  </TableCell>
-                  <TableCell align="right">{row.calories}</TableCell>
-                  <TableCell align="right">{row.fat}</TableCell>
-                  <TableCell align="right">{row.carbs}</TableCell>
-                  <TableCell align="right">{row.protein}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </StyledTable>
-        </StyledTableContainer>
-      </StyledBox>
+          {rows
+            ? (<>
+                <StyledButtonBox>
+                  <StyledButton variant="contained" size='small'>Select Columns</StyledButton>
+                </StyledButtonBox>
+                <StyledTableContainer component={Paper}>
+                  <StyledTable aria-label="simple table">
+                    <TableHead>
+                      <TableRow>
+                        {selectedColumns.map((name) => <TableCell align="center" key={name}>{name}</TableCell>)}
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {rows.map((row, index) => (
+                        <TableRow
+                          key={index}
+                          sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                        >
+                          {Object.keys(row).map(keyName => <TableCell align='center' key={keyName}>{row[keyName]}</TableCell>)}
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </StyledTable>
+                </StyledTableContainer>
+              </>)
+          : <CircularProgress />
+          }
+        </StyledBox>
     </div>
   );
 }
