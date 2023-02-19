@@ -1,4 +1,4 @@
-export function getAvalaibleColumns(data) {
+export function getColumns(data) {
     return Object.keys(data);
 }
 
@@ -17,7 +17,7 @@ export function getDataByNames(names, data) {
 export function getRows(data) {
     const result = [];
     const columnsCount = Object.keys(data).length;
-    const itemsCount = Object.values(data)[0].length;
+    const itemsCount = Object.values(data)[0]?.length;
 
     for (let i = 0; i < itemsCount; i++) {
         const row = {};
