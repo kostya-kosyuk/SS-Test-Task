@@ -1,10 +1,12 @@
-# Readme
+# Test-Task
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 Created using React.js, Redux, and react-beautiful-dnd.
 Yarn was used as a package manager.
 The styled-components library was also used to style the components.
 The project also includes ESLint for linting the code.
+
+[DEMO-LINK](https://kostya-kosyuk.github.io/ss-test-task/)
 
 ## Screenshots
 
