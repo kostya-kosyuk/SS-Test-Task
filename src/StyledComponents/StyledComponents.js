@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import { TableContainer, Table, Box, TextField, List, IconButton, Modal, ListItem } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
 
 export const StyledBox = styled(Box)`
 margin: auto;
@@ -124,10 +123,10 @@ export const StyledIconButton = styled(IconButton)`
     padding: 4px;
     width: 24px;
     height: 24px;
-`;
 
-export const StyledCloseIcon = styled(CloseIcon)`
+& > svg {
     font-size: 16px;
+}
 `;
 
 export const StyledModal = styled(Modal)`

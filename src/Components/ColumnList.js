@@ -1,7 +1,9 @@
 import React from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
-import { StyledList, StyledIconButton, StyledCloseIcon, StyledListItem } from '../StyledComponents';
+import { StyledList, StyledIconButton, StyledListItem } from '../StyledComponents';
 import { ListItemText } from '@mui/material';
+
+import CloseIcon from '@mui/icons-material/Close';
 
 export default function ColumnList({ droppableId, columns, handleSelect, handleCancelSelection }) {
     return (
@@ -23,7 +25,7 @@ export default function ColumnList({ droppableId, columns, handleSelect, handleC
                                                 aria-label="clear"
                                                 onClick={() => handleCancelSelection(name)}
                                             >
-                                                <StyledCloseIcon />
+                                                <CloseIcon />
                                             </StyledIconButton>
                                         </StyledListItem>
                                     )}

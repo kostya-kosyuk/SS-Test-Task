@@ -47,7 +47,7 @@ function App() {
       <MemoizedTable handleToggleModal={handleToggleModal} />
       {availableColumns && (
         <SelectionWindowLazy
-        isModalOpen={isModalOpen}
+          isModalOpen={isModalOpen}
           handleToggleModal={handleToggleModal}
         />
       )}
