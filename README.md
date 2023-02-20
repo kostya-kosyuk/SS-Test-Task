@@ -6,6 +6,12 @@ Yarn was used as a package manager.
 The styled-components library was also used to style the components.
 The project also includes ESLint for linting the code.
 
+## Screenshots
+
+![Table](https://user-images.githubusercontent.com/80011474/220156168-7614c69d-fb48-4413-8535-51e9247c594c.png)
+![Selection](https://user-images.githubusercontent.com/80011474/220156809-8a9f9679-12f3-4b51-89c8-013107c69079.png)
+
+
 ## Getting started
 To get started with this project, you can either clone this repository or download the source code as a ZIP file. After that, you can run the following command to install the dependencies:
 
