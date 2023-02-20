@@ -1,12 +1,12 @@
-import { useEffect, useState} from 'react';
+import { useCallback, useEffect, useState} from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { getData, getColumns, getAvailableColumns, setData, setColumns, setAvailableColumns, setSelectedColumns } from './redux';
 import { getData as getDataFromServer } from './utils/api'
 
 
-import Table from './Components/Table';
-import SelectionWindow from './Components/SelectionWindow';
+import { MemoizedTable } from './Components/Table';
+import SelectionWindowLazy from './LazyComponents/SelectionWindowLazy';
 
 function App() {
   const dispatch = useDispatch();
@@ -40,14 +40,14 @@ function App() {
     }
   }, [columns]);
 
-  const handleToggleModal = () => setModalToggle((prev) => !prev);
+  const handleToggleModal = useCallback(() => setModalToggle((prev) => !prev), []);
 
   return (
     <div className="App">
-      <Table handleToggleModal={handleToggleModal} />
+      <MemoizedTable handleToggleModal={handleToggleModal} />
       {availableColumns && (
-        <SelectionWindow
-          isModalOpen={isModalOpen}
+        <SelectionWindowLazy
+        isModalOpen={isModalOpen}
           handleToggleModal={handleToggleModal}
         />
       )}

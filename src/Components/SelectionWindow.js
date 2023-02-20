@@ -1,4 +1,5 @@
-import { StyledSelectionBox, StyledListsWrapper, StyledSearchField, StyledApplyButton, StyledModal } from '../StyledComponents';
+import { StyledSelectionBox, StyledListsWrapper, StyledSearchField, StyledModal } from '../StyledComponents';
+import { Button } from '@mui/material'
 
 import { DragDropContext } from 'react-beautiful-dnd';
 
@@ -64,7 +65,8 @@ export default function SelectionWindow({ isModalOpen, handleToggleModal }) {
             onClose={handleToggleModal}
         >
             <StyledSelectionBox>
-                <StyledSearchField size='small' label="Search available columns..." type="search"
+                <StyledSearchField size='small' label="Search available columns..." type="text"
+                    autoComplete='off'
                     onChange={(event) => handleQueryChange(event.target.value)}
                 />
                 <DragDropContext onDragEnd={onDragEnd}>
@@ -82,13 +84,13 @@ export default function SelectionWindow({ isModalOpen, handleToggleModal }) {
                         />
                     </StyledListsWrapper>
                 </DragDropContext>
-                <StyledApplyButton variant="contained"
+                <Button variant="contained"
                     onClick={() => {
                         handleToggleModal();
                         handleApplySelection(tempAvailable, tempSelected);
                     }}>
                     Apply
-                </StyledApplyButton>
+                </Button>
             </StyledSelectionBox>
         </StyledModal>
     ))

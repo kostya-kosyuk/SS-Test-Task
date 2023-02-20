@@ -1,14 +1,16 @@
-import { Paper, TableRow, TableHead, TableCell, TableBody, CircularProgress } from '@mui/material';
+import { Paper, TableRow, TableHead, TableCell, TableBody, CircularProgress, Button } from '@mui/material';
 
-import { StyledButton, StyledButtonBox, StyledTable, StyledTableContainer, StyledBox } from '../StyledComponents';
+import { StyledButtonBox, StyledTable, StyledTableContainer, StyledBox } from '../StyledComponents';
 
 import { getData, getSelectedColumns } from '../redux';
 import { useSelector } from 'react-redux';
 
-import { useMemo } from 'react';
+import { useMemo, memo } from 'react';
 import { getDataByNames, getRows } from '../utils/dataFunctions';
 
-export default function Table({ handleToggleModal }) {
+export const MemoizedTable = memo(Table);
+
+export function Table({ handleToggleModal }) {
     const data = useSelector(getData);
     const selectedColumns = useSelector(getSelectedColumns);
 
@@ -20,7 +22,7 @@ export default function Table({ handleToggleModal }) {
                 ? (
                     <>
                         <StyledButtonBox>
-                            <StyledButton variant="contained" size='small' onClick={handleToggleModal}>Select Columns</StyledButton>
+                            <Button variant="contained" size='small' onClick={handleToggleModal}>Select Columns</Button>
                         </StyledButtonBox>
                         <StyledTableContainer component={Paper}>
                             <StyledTable aria-label="simple table">

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { TableContainer, Table, Button, Box, TextField, List, IconButton, Modal, ListItem } from '@mui/material';
+import { TableContainer, Table, Box, TextField, List, IconButton, Modal, ListItem } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
 export const StyledBox = styled(Box)`
@@ -24,8 +24,6 @@ display: flex;
 flex-direction: row;
 align-items: center;
 `;
-export const StyledButton = styled(Button)`
-`;
 export const StyledTableContainer = styled(TableContainer)`
 
 max-height: 90vh;
@@ -41,7 +39,7 @@ min-height: 400px;
 
 th, td {
     border: 1px solid #ddd;
-    padding: 4px;
+padding: 4px;
 }
 `;
 
@@ -114,18 +112,12 @@ border-radius: 12px;
 }
 `;
 
-export const StyledApplyButton = styled(Button)`
-`;
-
 export const StyledList = styled(List)`
 height: 300px;
 width: 90%;
 
 overflow-y: auto;
 overflow-x: hidden;
-
-> div > li {
-}
 `;
 
 export const StyledIconButton = styled(IconButton)`
