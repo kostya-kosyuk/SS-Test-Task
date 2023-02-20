@@ -1,7 +1,7 @@
 import React from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
-import { StyledList, StyledIconButton, StyledCloseIcon } from '../StyledComponents';
-import { ListItem, ListItemText } from '@mui/material';
+import { StyledList, StyledIconButton, StyledCloseIcon, StyledListItem } from '../StyledComponents';
+import { ListItemText } from '@mui/material';
 
 export default function ColumnList({ droppableId, columns, handleSelect, handleCancelSelection }) {
     return (
@@ -13,11 +13,11 @@ export default function ColumnList({ droppableId, columns, handleSelect, handleC
                             {(provided) => (
                                 <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
                                     {droppableId === 'available' ? (
-                                        <ListItem onClick={() => handleSelect(name)}>
+                                        <StyledListItem onClick={() => handleSelect(name)}>
                                             <ListItemText primary={name} align="left" />
-                                        </ListItem>
+                                        </StyledListItem>
                                     ) : (
-                                        <ListItem>
+                                        <StyledListItem>
                                             <ListItemText primary={name} align="left" />
                                             <StyledIconButton
                                                 aria-label="clear"
@@ -25,7 +25,7 @@ export default function ColumnList({ droppableId, columns, handleSelect, handleC
                                             >
                                                 <StyledCloseIcon />
                                             </StyledIconButton>
-                                        </ListItem>
+                                        </StyledListItem>
                                     )}
                                     {provided.placeholder}
                                 </div>
@@ -37,4 +37,4 @@ export default function ColumnList({ droppableId, columns, handleSelect, handleC
             )}
         </Droppable >
     )
-};
+}

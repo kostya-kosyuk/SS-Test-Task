@@ -6,7 +6,7 @@ export function getDataByNames(names, data) {
     const result = {};
 
     for (const name of names) {
-        if (data.hasOwnProperty(name)) {
+        if (Object.hasOwnProperty.call(data, name)) {
             result[name] = data[name];
         }
     }

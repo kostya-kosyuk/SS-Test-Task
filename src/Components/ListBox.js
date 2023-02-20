@@ -20,4 +20,4 @@ export default function ListBox({ droppableId, columns, handleSelect, handleCanc
             />
         </StyledListBox>
     );
-};
+}

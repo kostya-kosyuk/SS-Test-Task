@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { TableContainer, Table, Button, Box, TextField, ListItemButton, List, ListItemText, IconButton, Modal } from '@mui/material';
+import { TableContainer, Table, Button, Box, TextField, List, IconButton, Modal, ListItem } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
 export const StyledBox = styled(Box)`
@@ -34,8 +34,15 @@ max-height: 90vh;
 };
 
 `;
+
 export const StyledTable = styled(Table)`
 min-width: 650px;
+min-height: 400px;
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 4px;
+}
 `;
 
 export const StyledSelectionBox = styled(Box)`
@@ -116,6 +123,9 @@ width: 90%;
 
 overflow-y: auto;
 overflow-x: hidden;
+
+> div > li {
+}
 `;
 
 export const StyledIconButton = styled(IconButton)`
@@ -132,4 +142,10 @@ export const StyledModal = styled(Modal)`
     display: flex;
     justify-content: center;
     align-items: center;
+`;
+
+export const StyledListItem = styled(ListItem)`
+border-radius: 14px;
+background-color: rgba(0, 0, 0, 0.05);
+margin-bottom: 6px;
 `;
